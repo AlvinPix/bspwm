@@ -1,0 +1,51 @@
+#! /bin/sh
+
+# ██████╗ ███████╗██████╗ ██╗    ██╗███╗   ███╗
+# ██╔══██╗██╔════╝██╔══██╗██║    ██║████╗ ████║
+# ██████╔╝███████╗██████╔╝██║ █╗ ██║██╔████╔██║
+# ██╔══██╗╚════██║██╔═══╝ ██║███╗██║██║╚██╔╝██║
+# ██████╔╝███████║██║     ╚███╔███╔╝██║ ╚═╝ ██║
+# ╚═════╝ ╚══════╝╚═╝      ╚══╝╚══╝ ╚═╝     ╚═╝
+# BSPWMRC | Hacker environment                                             
+# Enríquez González (Aka. AlvinPix)
+# Color theme: Camila
+
+# xprop | grep WM_CLASS
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+#bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d I II III IV V VI
+
+xsetroot -cursor_name left_ptr &
+
+bspc config border_width         1
+bspc config focused_border_color \#f60726
+bspc config normal_border_color \#838383
+bspc config window_gap          5
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc config focus_follows_pointer true
+bspc config pointer_follows_focus true
+bspc config gapless_monocle true
+bspc config paddingless_monocle true
+
+#bspc rule -a 'Gnome-terminal' state=floating rectangle=1000x600+150+150 center=true
+#bspc rule -a 'Google-chrome' desktop='I'
+#bspc rule -a 'firefox' desktop='I'
+bspc rule -a 'SimpleScreenRecorder' state=floating follow=on
+bspc rule -a 'BleachBit' state=floating follow=on
+bspc rule -a 'stacer' state=floating follow=on
+bspc rule -a 'org.gnome.Nautilus' state=floating follow=on
+bspc rule -a 'gnome-calculator' state=floating follow=on
+bspc rule -a 'Nitrogen' state=floating follow=on
+bspc rule -a 'Synaptic' state=floating follow=on
+
+# Auto-Start
+
+picom &
+${HOME}/.config/polybar/launch.sh --cuts &
+${HOME}/scripts/wall-scripts/camila_wal.sh &
